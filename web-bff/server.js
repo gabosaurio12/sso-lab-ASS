@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const hostname = process.env.BASE_URL || '127.0.0.1';
+
 const options = {
   key: readFileSync(new URL("./ssl/localhost.key", import.meta.url)),
   cert: readFileSync(new URL("./ssl/localhost.crt", import.meta.url)),
@@ -17,6 +19,6 @@ const server = createServer(options, (req, res) => {
 });
 
 
-server.listen(port, () => {
-  console.log(`Server running on https://localhost:${port} AND https://127.0.0.1:${port}`);
+server.listen(port, hostname, () => {
+  console.log(`Server running on https://${hostname}:${port} AND https://127.0.0.1:${port}`);
 });
