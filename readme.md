@@ -1,6 +1,6 @@
-== Config server
+## Config server
 
-1. Crear certificados https (si es necesario)
+1. Create HTTPS certificates (if necessary)
 
 ```
 cd web-bff/ssl/
