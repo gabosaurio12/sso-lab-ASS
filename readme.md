@@ -1,4 +1,4 @@
-== Config server
+## Config server
 
 1. Crear certificados https (si es necesario)
 
