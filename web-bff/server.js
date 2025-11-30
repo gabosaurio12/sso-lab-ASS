@@ -19,6 +19,6 @@ const server = createServer(options, (req, res) => {
 });
 
 
-createServer(optiones, server).listen(port, "0.0.0.0", () => {
+server.listen(port, "0.0.0.0", () => {
   console.log(`Server running on https://${hostname}:${port}`);
 });

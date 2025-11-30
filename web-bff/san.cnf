@@ -1,0 +1,14 @@
+[req]
+distinguished_name = dn
+req_extensions = req_ext
+prompt = no
+
+[dn]
+CN = 10.211.55.9
+
+[req_ext]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = 10.211.55.9
+IP.1 = 10.211.55.9
