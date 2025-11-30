@@ -1,16 +1,22 @@
-import { createServer } from 'node:http';
-import dotenv from 'dotenv';
+import { createServer } from "node:https";
+import { readFileSync } from "node:fs";
+import dotenv from "dotenv";
+
 dotenv.config();
 
-const hostname = process.env.BASE_URL || '127.0.0.1';
-const port = process.env.PORT || 3000;
+const options = {
+  key: readFileSync(new URL("./ssl/localhost.key", import.meta.url)),
+  cert: readFileSync(new URL("./ssl/localhost.crt", import.meta.url)),
+};
+
+const port = process.env.PORT || 443;
 
 const server = createServer(options, (req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hola Mundo');
+  res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+  res.end("Hola Mundo HTTPS ");
 });
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}`);
+
+server.listen(port, () => {
+  console.log(`Server running on https://localhost:${port} AND https://127.0.0.1:${port}`);
 });
