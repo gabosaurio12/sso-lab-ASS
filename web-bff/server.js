@@ -6,7 +6,7 @@ import qs from "qs";
 const app = express();
 const PORT = 3000;
 
-const KEYCLOAK_URL = "http://TU_IP:8080";
+const KEYCLOAK_URL = "https://10.211.55.9:8080";
 const REALM = "master";
 const CLIENT_ID = "web-app";
 
@@ -24,7 +24,7 @@ app.get("/login", (req, res) => {
     qs.stringify({
       client_id: CLIENT_ID,
       response_type: "code",
-      redirect_uri: `http://TU_IP:3000/callback`,
+      redirect_uri: `http://10.211.55.9:3000/callback`,
       code_challenge: codeChallenge,
       code_challenge_method: "S256",
     });
@@ -42,7 +42,7 @@ app.get("/callback", async (req, res) => {
      grant_type: "authorization_code",
       client_id: CLIENT_ID,
       code,
-      redirect_uri: `http://TU_IP:3000/callback`,
+      redirect_uri: `http://10.211.55.9:3000/callback`,
       code_verifier: req.session.codeVerifier,
     })
   );
