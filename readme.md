@@ -4,7 +4,10 @@
 
 ```
 cd web-bff/ssl/
-openssl genrsa -out server.key 2048
-openssl req -new -x509 -key server.key -out server.crt -days 365 -subj "/CN=<ip-server>"
-
+openssl req -x509 -nodes -days 365 \
+  -newkey rsa:2048 \
+  -keyout server.key \
+  -out server.crt \
+  -subj "/CN=10.211.55.9" \
+  -addext "subjectAltName = IP:<ip-server>"
 ```
